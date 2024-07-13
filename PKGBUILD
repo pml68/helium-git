@@ -1,6 +1,6 @@
 # Maintainer: CoffeeLink <aron@coffeelink.hu>
 pkgname=helium-git
-pkgver=0.0.1
+pkgver=0.4.5.g1bf81a0
 pkgrel=1
 pkgdesc="An Emulator for an arhitecture I designed out of boredom."
 arch=('x86_64')
@@ -24,6 +24,10 @@ prepare() {
   export RUSTUP_TOOLCHAIN=nightly
   cargo update
   cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
+}
+
+pkgver() {
+  echo "$(cargo metadata --format-version 1  | jq -r '.packages[]  | select(.name | test("helium_vm")) | .version').g$(git rev-parse --short HEAD)"
 }
 
 build() {
