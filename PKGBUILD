@@ -16,6 +16,7 @@ depends=(
 )
 makedepends=(
   'git'
+  'jq'
   'cargo-nightly'
 )
 
