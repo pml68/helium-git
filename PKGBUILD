@@ -1,6 +1,6 @@
 # Maintainer: CoffeeLink <aron@coffeelink.hu>
 pkgname=helium-git
-pkgver=0.4.5.g1bf81a0
+pkgver=0.4.5.g5e1f38f
 pkgrel=1
 pkgdesc="An Emulator for an arhitecture I designed out of boredom."
 arch=('x86_64')
@@ -28,7 +28,7 @@ prepare() {
 }
 
 pkgver() {
-  echo "$(cargo metadata --format-version 1  | jq -r '.packages[]  | select(.name | test("helium_vm")) | .version').g$(git rev-parse --short HEAD)"
+  echo "$(cargo metadata --format-version 1  | jq -r '.packages[]  | select(.name | test("helium_vm")) | .version').g$(cd helium && git rev-parse --short HEAD)"
 }
 
 build() {
